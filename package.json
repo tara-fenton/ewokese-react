@@ -1,0 +1,20 @@
+{
+  "name": "EwokeseApp",
+  "version": "1.0.0",
+  "description": "Chat application that allows users to send messages to each other in real time",
+  "main": "index.js",
+  "repository": "https://git.generalassemb.ly/tara-fenton/EwokeseApp.git",
+  "author": "MeTaJo",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "eslint": "^4.19.1",
+    "express": "^4.16.3",
+    "pg-promise": "^8.2.3"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.10.0"
+  }
+}
