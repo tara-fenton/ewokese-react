@@ -10,7 +10,7 @@ app.set('port', process.env.PORT || 3000);
 // import models
 const User = require('./models/User');
 
-app.get('/api/user', (request, response) => {
+app.get('/api/users', (request, response) => {
   User.findAll().then((users) => {
     // render the list of users
     response.json(users);
