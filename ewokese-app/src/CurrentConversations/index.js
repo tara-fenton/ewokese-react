@@ -19,7 +19,7 @@ class CurrentConversations extends Component {
 
   render() {
     return (
-      <div className="profile-container">
+      <div className="current-conversations">
         <div className="user-id-message-one">
           <p>Omg I love your hair!</p>
         </div>
@@ -27,7 +27,7 @@ class CurrentConversations extends Component {
           <p>Omg thanks! It's Nandita's</p>
         </div>
           </div>
-          )
+    )
   }
 }
 
