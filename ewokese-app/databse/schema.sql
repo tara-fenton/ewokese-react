@@ -2,19 +2,19 @@ CREATE DATABASE ewokese_app;
 
 \c ewokese_app;
 
-DROP TABLE user;
-DROP TABLE conversation;
+DROP TABLE users;
+DROP TABLE conversations;
 DROP TABLE messages;
 DROP TABLE user_conversations;
 
-CREATE TABLE user (
+CREATE TABLE users (
   id BIGSERIAL PRIMARY KEY,
   username VARCHAR(255),
   password VARCHAR(255),
   nickname VARCHAR(255)
 );
 
-CREATE TABLE conversation (
+CREATE TABLE conversations (
   id BIGSERIAL PRIMARY KEY,
   name VARCHAR(255),
   user_array VARCHAR(255) REFERENCES user(id)

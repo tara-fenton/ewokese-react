@@ -1,12 +1,12 @@
 \c ewokese_app
 
-INSERT INTO user (username, password, nickname)
+INSERT INTO users (username, password, nickname)
 VALUES
 ('jordan', 'dog', 'lickway'),
 ('tara', 'cat', 'tarbear'),
 ('m.e.', 'birds', 'me');
 
-INSERT INTO conversation (name, user_array)
+INSERT INTO conversations (name, user_array)
 VALUES
 ('jordan', 'dog', 'lickway'),
 ('tara', 'cat', 'tarbear'),
