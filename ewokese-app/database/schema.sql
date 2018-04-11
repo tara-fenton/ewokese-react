@@ -17,17 +17,17 @@ CREATE TABLE users (
 CREATE TABLE conversations (
   id BIGSERIAL PRIMARY KEY,
   name VARCHAR(255),
-  user_array VARCHAR(255) REFERENCES user(id)
+  user_array VARCHAR(255)[]
 );
 
 CREATE TABLE messages (
   id BIGSERIAL PRIMARY KEY,
-  sender_id INTEGER REFERENCES user(id),
-  conversation_id INTEGER REFERENCES conversation(id)
+  sender_id INTEGER REFERENCES users(id),
+  conversation_id INTEGER REFERENCES conversations(id)
 );
 
 CREATE TABLE user_conversations (
   id BIGSERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES user(id),
-  conversation_id INTEGER REFERENCES conversation(id)
+  user_id INTEGER REFERENCES users(id),
+  conversation_id INTEGER REFERENCES conversations(id)
 );
