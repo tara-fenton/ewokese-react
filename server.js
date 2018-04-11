@@ -1,9 +1,10 @@
-const express = require("express");
+const express = require('express');
+
 const app = express();
 
-app.set("port", process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3000);
 
-const bodyParser = require("body-parser");
+// const bodyParser = require('body-parser');
 // const FileStore = require("session-file-store")(session);
 
 // import models
@@ -11,7 +12,7 @@ const User = require('./models/User');
 
 app.get('/api/user', (request, response) => {
   User.findAll().then((users) => {
-    // render the list of venues
+    // render the list of users
     response.json(users);
   });
 });
