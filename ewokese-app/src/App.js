@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Profile from "./Profile";
 import Conversations from "./Conversations";
-import CurrentConversation from "/CurrentConversation";
+import CurrentConversation from "./CurrentConversation";
 import './App.css';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
