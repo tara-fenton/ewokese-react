@@ -2,7 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
-const cors = require("cors");
+const cors = require('cors');
+
 
 
 const app = express();
@@ -14,10 +15,11 @@ app.set('port', process.env.PORT || 3000);
 // const FileStore = require("session-file-store")(session);
 
 // import models
+const Conversation = require('./models/Conversation');
 const User = require('./models/User');
 const Message = require('./models/Message');
 
-//get all users
+// get all users
 app.get('/api/users', (request, response) => {
   User.findAll().then((users) => {
     // render the list of users
@@ -25,7 +27,7 @@ app.get('/api/users', (request, response) => {
   });
 });
 
-//get user by id
+// get user by id
 app.get('/api/user/:id', (request, response) => {
   const userId = request.params.id;
   console.log(userId);
@@ -55,37 +57,41 @@ app.get('/api/messages', (request, response) => {
     .then((allMessages) => {
       response.json(allMessages);
     });
-  });
+});
 
-  app.get('/api/messages/sender/:id', (request, response) => {
-    const senderId = request.params.id
-    console.log(senderId);
-    Message.findBySenderId(senderId)
-      .then((sender) => {
-        response.json(sender);
-      });
+app.get('/api/messages/sender/:id', (request, response) => {
+  const senderId = request.params.id
+  console.log(senderId);
+  Message.findBySenderId(senderId)
+    .then((sender) => {
+      response.json(sender);
     });
+});
 
-    app.get('/api/messages/conversation/:id', (request, response) => {
-      const conversationId = request.params.id
-      console.log(conversationId);
-      Message.findByConversationId(conversationId)
-        .then((conversation) => {
-          response.json(conversation);
-        });
-      });
+app.get('/api/messages/conversation/:id', (request, response) => {
+  const conversationId = request.params.id
+  console.log(conversationId);
+  Message.findByConversationId(conversationId)
+    .then((conversation) => {
+      response.json(conversation);
+    });
+});
 
 
-      app.post('/api/messages/new/message', urlencodedParser, (request, response) => {
-        const newMessage = request.body;
-        const id = parseInt(request.params.id);
-        console.log(newMessage);
-        Message.create(newMessage)
-          .then((newMessage) => {
-            response.json(newMessage);
-          });
-      });
+app.post('/api/messages/new/message', urlencodedParser, (request, response) => {
+  const newMessage = request.body;
+  const id = parseInt(request.params.id);
+  console.log(newMessage);
+  Message.create(newMessage)
+    .then((newMessage) => {
+      response.json(newMessage);
+    });
+});
 
+
+app.get('/api/conversations', (request, response) => {
+  Conversation.findAll().then(conversations) =>
+})
 
 
 app.listen(app.get('port'), () => {

@@ -1,34 +1,38 @@
 import React, { Component } from "react";
-import {
-  BroswerRouter as Router,
-  Route,
-  Link,
-  Redirect
-} from "react-router-dom";
 
 class Conversations extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      null: null
-    }
-    //bind events
+      conversations: [],
+      conversationsLoaded: false
+    };
+    // bind event handlers here
   }
-  //functions
+  // Request conversations data if not already loaded
+  componentDidMount() {
+    this.fetchConversations();
+  }
+  // Fetch all conversations from API endpoint and put them in state.
+  fetchConversations() {
+    fetch("http://localhost:3000/api/conversations")
+      .then(response => response.json())
+      .then(conversationsAPIResponse => {
+        this.setState({
+          conversations: conversationsAPIResponse,
+          conversationsLoaded: true
+        })
+      })
 
+    }
 
   render() {
     return (
-      <div className="profile-container">
-        <div className="user-id-message-one">
-          <p>Omg I love your hair!</p>
-        </div>
-        <div className="user-id-message-two">
-          <p>Omg thanks! It's Nandita's</p>
-        </div>
-          </div>
-          )
-  }
+      <div>
+        {this.state.conversationsLoaded ? (
+          this.state.conversations.map(message => <div> {message.message} </div>)
+        ) : (<p>Loading conversations</p>)}
+      </div>
+    )}
 }
-
 export default Conversations;
