@@ -14,6 +14,7 @@ app.set('port', process.env.PORT || 3000);
 // const FileStore = require("session-file-store")(session);
 
 // import models
+const Conversation = require('./models/Conversation');
 const User = require('./models/User');
 const Message = require('./models/Message');
 
