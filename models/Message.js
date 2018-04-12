@@ -16,7 +16,7 @@ Message.create = (newMessage) => {
     newMessage.conversation_id,
     newMessage.message
   ]);
-}ç
+}
 
 Message.delete = id => {
   return db.result('DELETE FROM messages WHERE id = $1', [id]);
