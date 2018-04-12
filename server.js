@@ -27,6 +27,13 @@ app.get('/api/users', (request, response) => {
   });
 });
 
+app.get('/api/conversations', (request, response) => {
+  Conversation.findAll().then((conversations) => {
+    // render the list of users
+    response.json(conversations);
+  });
+});
+
 // get user by id
 app.get('/api/user/:id', (request, response) => {
   const userId = request.params.id;
@@ -87,11 +94,6 @@ app.post('/api/messages/new/message', urlencodedParser, (request, response) => {
       response.json(newMessage);
     });
 });
-
-
-app.get('/api/conversations', (request, response) => {
-  Conversation.findAll().then(conversations) =>
-})
 
 
 app.listen(app.get('port'), () => {
