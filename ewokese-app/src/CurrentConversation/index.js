@@ -6,7 +6,7 @@ import {
   Redirect
 } from "react-router-dom";
 
-class CurrentConversations extends Component {
+class CurrentConversation extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,4 +31,4 @@ class CurrentConversations extends Component {
   }
 }
 
-export default CurrentConversations;
+export default CurrentConversation;
