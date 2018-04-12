@@ -4,7 +4,8 @@ class Messages extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      null: null
+      messages: [],
+      messagesLoaded: false
     };
     // bind event handlers here
   }
@@ -17,28 +18,21 @@ class Messages extends Component {
     fetch("http://localhost:3000/api/messages")
       .then(response => response.json())
       .then(messagesAPIResponse => {
-        let messagesById = {};
-        messagesAPIResponse.forEach(message => {
-          messagesById[message.id] = message;
-        });
-        this.setState((previousState, props) => {
-          messagesById = Object.assign(
-            previousState.messagesById,
-            messagesById
-          );
-          return {
-            messagesById: messagesById
-          };
-        });
-      });
-  }
+        this.setState({
+          messages: messagesAPIResponse,
+          messagesLoaded: true
+        })
+      })
+
+    }
+
   render() {
     return (
       <div>
-        <p>Hello World</p>
+        {this.state.messagesLoaded ? (
+          this.state.messages.map(message => <div> {message.message} </div>)
+        ) : (<p>Loading messages</p>)}
       </div>
-    )
-  }
+    )}
 }
-
 export default Messages;
