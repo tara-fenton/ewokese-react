@@ -9,20 +9,19 @@ DROP TABLE user_conversations CASCADE;
 
 CREATE TABLE users (
   id BIGSERIAL PRIMARY KEY,
-  username VARCHAR(255),
-  password VARCHAR(255),
-  nickname VARCHAR(255)
+  user_name VARCHAR(255),
+  hashed_password VARCHAR(255),
+  nick_name VARCHAR(255)
 );
 
 CREATE TABLE conversations (
   id BIGSERIAL PRIMARY KEY,
-  name VARCHAR(255),
-  user_array INTEGER[]
+  name VARCHAR(255)
 );
 
 CREATE TABLE messages (
   id BIGSERIAL PRIMARY KEY,
-  sender_id INTEGER REFERENCES users(id),
+  user_id INTEGER REFERENCES users(id),
   conversation_id INTEGER REFERENCES conversations(id),
   message VARCHAR(255)
 );
