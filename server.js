@@ -88,6 +88,11 @@ app.post('/api/messages/new/message', urlencodedParser, (request, response) => {
 });
 
 
+app.get('/api/conversations', (request, response) => {
+  Conversation.findAll().then(conversations) =>
+})
+
+
 app.listen(app.get('port'), () => {
   console.log('Node app is running on port', app.get('port'));
 });
