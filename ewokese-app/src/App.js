@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Profile from "./Profile";
+import Messages from "./Messages";
 import Conversations from "./Conversations";
 import CurrentConversation from "./CurrentConversation";
 import Register from "./Register";
@@ -18,6 +19,7 @@ class App extends Component {
           <Route exact path="/login" component={Login} />
           <Route exact path="/conversations" component={Conversations} />
           <Route exact path="/list" component={CurrentConversation} />
+          <Route exact path="/messages" component={Messages} />
         </div>
       </Router>
     );
