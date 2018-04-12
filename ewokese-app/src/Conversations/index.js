@@ -30,7 +30,7 @@ class Conversations extends Component {
     return (
       <div>
         {this.state.conversationsLoaded ? (
-          this.state.conversations.map(message => <div> {message.message} </div>)
+          this.state.conversations.map(conversation => <div> {conversation.name} </div>)
         ) : (<p>Loading conversations</p>)}
       </div>
     )}
