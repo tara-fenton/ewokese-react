@@ -24,7 +24,7 @@ class CurrentConversation extends Component {
           <p>Omg I love your hair!</p>
         </div>
         <div className="user-id-message-two">
-          <p>Omg thanks! It's Nandita's</p>
+          <p>Omg thanks! It's Nandita's!</p>
         </div>
           </div>
     )
