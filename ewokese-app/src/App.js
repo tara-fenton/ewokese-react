@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
+
+import Profile from "./Profile";
+import Conversations from "./Conversations";
+import CurrentConversation from "./CurrentConversation";
 import './App.css';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class App extends Component {
   render() {
     return (
-      <div className="container">
-          <h1>JORDAN IS SUCH A PRETTY KITTY</h1>
-      </div>
+      <Router>
+        <div className="container">
+          <Route exact path="/" component={Profile} />
+          <Route exact path="/conversations" component={Conversations} />
+          <Route exact path="/list" component={CurrentConversation} />
+        </div>
+      </Router>
     );
   }
 }
