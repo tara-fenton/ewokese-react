@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import Profile from "./Profile";
 import Messages from "./Messages";
 import Conversations from "./Conversations";
@@ -8,6 +7,7 @@ import Register from "./Register";
 import Login from "./Login";
 import './App.css';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import EditNickName from "./EditNickName";
 
 class App extends Component {
   // constructor(props) {
@@ -19,6 +19,7 @@ class App extends Component {
   render() {
     return (
       <Router>
+
         <div className="container">
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/register" component={Register} />
@@ -32,6 +33,7 @@ class App extends Component {
           {/* <div className="messages-container">
             <Messages />
           </div> */}
+
         </div>
       </Router>
     );
