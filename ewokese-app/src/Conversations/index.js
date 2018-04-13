@@ -9,6 +9,10 @@ class Conversations extends Component {
     };
     // bind event handlers here
   }
+
+  sendConversationId(id) {
+    console.log(id);
+  }
   // Request conversations data if not already loaded
   componentDidMount() {
     this.fetchConversations();
@@ -18,21 +22,37 @@ class Conversations extends Component {
     fetch("http://localhost:3000/api/conversations")
       .then(response => response.json())
       .then(conversationsAPIResponse => {
+        let conversations = conversationsAPIResponse.map(conversation => {
+          return (
+            <div
+              className="noselect"
+              key={conversation.id}
+              id={conversation.id}
+              onClick={() => this.sendConversationId(conversation.id)}
+            >
+              {" "}
+              {conversation.name}{" "}
+            </div>
+          );
+        });
         this.setState({
-          conversations: conversationsAPIResponse,
+          conversations: conversations,
           conversationsLoaded: true
-        })
-      })
-
-    }
+        });
+      });
+  }
 
   render() {
     return (
       <div>
         {this.state.conversationsLoaded ? (
-          this.state.conversations.map(conversation => <div> {conversation.name} </div>)
-        ) : (<p>Loading conversations</p>)}
+          <div>{this.state.conversations}</div>
+        ) : (
+          // this.state.conversations.map(conversation => <div key={conversation.id} onClick={ () => this.sendConversationId(conversation.id)}> {conversation.name} </div>)
+          <p>Loading conversations</p>
+        )}
       </div>
-    )}
+    );
+  }
 }
 export default Conversations;
