@@ -10,16 +10,28 @@ import './App.css';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class App extends Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //
+  //   }
+  // }
   render() {
     return (
       <Router>
         <div className="container">
-          <Route exact path="/" component={Profile} />
+          <Route exact path="/profile" component={Profile} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/conversations" component={Conversations} />
-          <Route exact path="/list" component={CurrentConversation} />
-          <Route exact path="/messages" component={Messages} />
+
+          <Route exact path="/" component={CurrentConversation} />
+
+          {/* <div className="conversations-container">
+            <Conversations />
+          </div> */}
+          {/* <div className="messages-container">
+            <Messages />
+          </div> */}
         </div>
       </Router>
     );
