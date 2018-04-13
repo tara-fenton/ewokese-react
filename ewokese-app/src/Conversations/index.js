@@ -43,14 +43,7 @@ class Conversations extends Component {
               </div>
           </li>
 
-          <li className="message left appeared">
-            <div className="avatar"></div>
-              <div className="text_wrapper">
-                <div className="text">
-                  goodbye
-                </div>
-              </div>
-          </li>
+
 
 
 
