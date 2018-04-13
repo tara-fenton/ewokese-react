@@ -60,3 +60,5 @@ render() {
   )
 }
 }
+
+export default Register;
