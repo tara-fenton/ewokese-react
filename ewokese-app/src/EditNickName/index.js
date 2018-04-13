@@ -15,7 +15,7 @@ class EditNickName extends Component {
 
   render() {
     return (
-      <div className="current-conversations">
+      <div className="chat_window">
         HELLO
       </div>
     )

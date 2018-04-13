@@ -10,7 +10,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="container">
+        <div>
           <Route exact path="/profile/:id" component={Profile} />
           <Route path="/profile/:id/edit" component={EditNickName} />
           <Route exact path="/conversations" component={Conversations} />
