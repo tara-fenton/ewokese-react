@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import CurrentConversation from './CurrentConversation';
-import Messages from './Messages;'
+import Messages from './Messages';
 
 class Chat extends Component {
 
@@ -8,7 +8,7 @@ class Chat extends Component {
     super(props);
     this.state = {
       currentConversationName: '',
-      currentConversationInfo: {}.
+      currentConversationInfo: {},
       conversationDataLoaded: false
     }
   }
@@ -17,14 +17,19 @@ class Chat extends Component {
     this.setState({
       currentConversationName: conversationName
     })
-    fetch("http://localhost:3000/api/conversations")
+    fetch('http://localhost:3000/api/conversations')
     .then(response => response.json())
     .then(conversationInfoJson => {
       this.setState({
         currentConversationInfo: conversationInfoJson,
         conversationDataLoaded: true
-      })
-    })
+      });
+    });
+  }
+
+  componentDidMount() {
+    fetch('http://localhost:3000/api/conversations')
+    .then()
   }
 }
 

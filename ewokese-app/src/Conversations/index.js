@@ -10,12 +10,14 @@ class Conversations extends Component {
   }
 
   sendConversationId(id) {
-    this.setState({
-      conversationSelected: id
-    });
-    console.log(this.state.conversationSelected);
+    this.props.sendId(id)
+    // this.setState({
+    //   conversationSelected: id
+    // })
+    // console.log(this.state.conversationSelected);
   }
   // Request conversations data if not already loaded
+
 
   render() {
     const conversations = this.props.conversations.map(conversation => {
@@ -31,7 +33,13 @@ class Conversations extends Component {
         </div>
       );
     });
-    return <div>{conversations}</div>;
+    return (
+      <div>
+
+        {conversations}
+
+      </div>
+    );
   }
 }
 export default Conversations;
