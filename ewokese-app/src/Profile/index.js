@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import EditNickName from "../EditNickName/index";
 
 class Profile extends Component {
   constructor(props) {
@@ -32,6 +34,7 @@ class Profile extends Component {
 
   render() {
     return (
+      <Router>
       <div>
         {this.state.userLoaded ? (
           <div>
@@ -42,6 +45,7 @@ class Profile extends Component {
           <div>
           {this.state.userData.nick_name}
         </div>
+        <Link to={`/profile/1/edit`}>Edit</Link>
       </div>
         ) : (
             <p>
@@ -49,6 +53,7 @@ class Profile extends Component {
             </p>
           )}
       </div>
+    </Router>
     )}
 }
 export default Profile;
