@@ -21,8 +21,10 @@ class App extends Component {
       <Router>
 
         <div className="container">
+
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/register" component={Register} />
+          <Route exact path="/profile/1/edit" component={EditNickName} />
           <Route exact path="/login" component={Login} />
 
           <Route exact path="/" component={CurrentConversation} />
