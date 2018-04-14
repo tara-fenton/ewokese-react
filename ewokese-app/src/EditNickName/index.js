@@ -42,7 +42,7 @@ class EditNickName extends Component {
     const body = {
       nickname: this.state.nickname
     };
-    fetch(`http://localhost:3000/api/users/${this.state.userId}`, {
+    fetch(`http://localhost:3000/api/users/`, {
       method: "PUT",
       body: JSON.stringify(body),
       headers: {
