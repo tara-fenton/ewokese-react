@@ -1,29 +1,40 @@
 // USER MODEL
 const db = require('../database/db-connection');
+const bcrypt = require('bcryptjs');
 
-const User = {};
+module.exports = {
+  findAll() {
+    return db.any('SELECT * FROM users ORDER BY id');
+  },
 
-// find all users
-User.findAll = () => db.any('SELECT * FROM users ORDER BY id');
+  findById(id) {
+    return db.one('SELECT * FROM users WHERE id= $1', [id]);
+  },
 
-// find one user
-User.findById = id => db.one('SELECT * FROM users WHERE id= $1', [id]);
+  create(userData) {
+    const passwordDigest = bcrypt.hashSync(userData.password, 10);
+    return db.one(
+      `
+      INSERT INTO users (user_name, hashed_password, nick_name)
+      VALUES ($1, $2, $3)
+      RETURNING *;
+    `,
+      [userData.username, passwordDigest, userData.nickname]
+    );
+  },
 
-// create a new user
-User.create = (username, password, nickname) =>
-  db.one('INSERT INTO users (user_name, hashed_password, nick_name) VALUES ($1, $2, $3)', [
-    username,
-    password,
-    nickname,
-  ]);
+  findByUsername(username) {
+    return db.one('SELECT * FROM users WHERE user_name = $1;', [username]);
+  },
 
-// edit a users name, password and nickname
-User.edit = user =>
-  db.one('UPDATE users SET user_name = $1, hashed_password = $2, nick_name = $3 WHERE id= $4 RETURNING id', [
-    user.username,
-    user.password,
-    user.nickname,
-    user.userId,
-  ]);
-
-module.exports = User;
+  login(user) {
+    return this.findByUsername(user.username).then((userData) => {
+      const isAuthed = bcrypt.compareSync(
+        user.password,
+        userData.password_digest
+      );
+      if (!isAuthed) throw new Error('Invalid Credentials');
+      return userData;
+    });
+  }
+};

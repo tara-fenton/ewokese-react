@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 const cors = require('cors');
+const tokenService = require("./services/TokenService");
 
 
 
@@ -93,6 +94,35 @@ app.post('/api/messages/new/message', urlencodedParser, (request, response) => {
     .then((newMessage) => {
       response.json(newMessage);
     });
+});
+
+// ROUTES FOR USER AUTH
+
+app.post('/api/user/new', jsonParser, (request, response) => {
+  User.create(request.body)
+    .then(data => tokenService.makeToken({
+      username: data
+    }))
+    .then((token) => {
+      response.json({
+        token
+      })
+    })
+});
+
+// if the user didn't get created thrown an error
+// else include the user and token in the response
+app.post('/login', jsonParser, (request, response) => {
+  User.login(request.body)
+    .then(data => tokenService.makeToken({
+      username: data
+    }))
+    .then((token) => {
+      response.json({
+        token
+      })
+    })
+    .catch(err => console.log(`throwing an error: ${err}`));
 });
 
 
