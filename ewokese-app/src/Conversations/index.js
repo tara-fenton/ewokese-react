@@ -23,6 +23,7 @@ class Conversations extends Component {
 
   render() {
 
+
     return (
       <div>
       <div className="chat_window">
@@ -85,6 +86,7 @@ class Conversations extends Component {
 </div>
 )
 
+
     const conversations = this.props.conversations.map(conversation => {
       return (
         <div
@@ -100,7 +102,7 @@ class Conversations extends Component {
     });
     return (
       <div>
-
+        
         {conversations}
 
       </div>

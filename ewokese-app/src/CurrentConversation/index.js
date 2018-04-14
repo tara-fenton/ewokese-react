@@ -28,13 +28,12 @@ class CurrentConversation extends Component {
     console.log("clicked in CC ", id);
     this.setState({
       conversationSelected: id
-    })
+    });
   }
 
   //functions
   componentDidMount() {
     this.fetchConversations();
-
   }
   // Fetch all conversations from API endpoint and put them in state.
   fetchConversations() {
@@ -53,7 +52,7 @@ class CurrentConversation extends Component {
     const prevConversationId = prevState.conversationSelected;
     const newConversationId = this.state.conversationSelected;
     if (prevConversationId !== newConversationId) {
-    this.fetchMessages(this.state.conversationSelected);
+      this.fetchMessages(this.state.conversationSelected);
     }
   }
 
@@ -85,10 +84,7 @@ class CurrentConversation extends Component {
         </div>
         <div className="messages-container">
           {this.state.messagesLoaded ? (
-            <Messages
-              messages={this.state.messages}
-
-            />
+            <Messages messages={this.state.messages} />
           ) : (
             <p>Loading...</p>
           )}{" "}
