@@ -12,7 +12,9 @@ module.exports = {
   },
 
   create(userData) {
+    console.log(userData)
     const passwordDigest = bcrypt.hashSync(userData.password, 10);
+    console.log(passwordDigest)
     return db.one(
       `
       INSERT INTO users (user_name, hashed_password, nick_name)
@@ -31,7 +33,7 @@ module.exports = {
     return this.findByUsername(user.username).then((userData) => {
       const isAuthed = bcrypt.compareSync(
         user.password,
-        userData.password_digest
+        userData.hashed_password
       );
       if (!isAuthed) throw new Error('Invalid Credentials');
       return userData;

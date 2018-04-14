@@ -113,6 +113,7 @@ app.post('/api/user/new', jsonParser, (request, response) => {
 // if the user didn't get created thrown an error
 // else include the user and token in the response
 app.post('/login', jsonParser, (request, response) => {
+  console.log(request.body)
   User.login(request.body)
     .then(data => tokenService.makeToken({
       username: data
