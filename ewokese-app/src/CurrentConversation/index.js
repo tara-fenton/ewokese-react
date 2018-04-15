@@ -16,6 +16,7 @@ class CurrentConversation extends Component {
       userConversations: []
     };
     //bind events
+    window.localStorage.authToken
     this.sendId = this.sendId.bind(this);
   }
   //get id of conversation clicked to send to Messages

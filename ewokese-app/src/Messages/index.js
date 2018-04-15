@@ -5,51 +5,37 @@ class Messages extends Component {
     super(props);
     this.state = {
       messages: [],
-      messagesLoaded: false
+      messagesLoaded: false,
+      userId: 1
     };
     // bind event handlers here
   }
-  // Request messages data if not already loaded
-  // componentDidMount() {
-  //   this.fetchMessages();
-  // }
-  //  Fetch all messages from API endpoint and put them in state.
-  // fetchMessages() {
-  //   fetch("http://localhost:3000/api/messages")
-  //     .then(response => response.json())
-  //     .then(messagesAPIResponse => {
-  //       this.setState({
-  //         messages: messagesAPIResponse,
-  //         messagesLoaded: true
-  //       })
-  //     })
-  //
-  //   }
+
+
 
   render() {
-    const messages = this.props.messages.map(message => {
-      return (<div className="noselect" key={message.id} id={message.id}>
-        <li class="message left appeared">
-                 <div class="avatar"></div>
-                   <div class="text_wrapper">
-                     <div class="text">
-                       {" "}
-                       {message.message}{" "}
-                     </div>
-                   </div>
-               </li>
+    let counter = 0;
+      const messages = this.props.messages.map(message => {
+      // const className = `${this.state.userId} ? 'message left appeared' : 'message right appeared'}`
+      const className = `${counter} ? 'message left appeared' : 'message right appeared'}`
 
+        return (
+            <div className="noselect" key={message.id} id={message.id}>
+              <li className={className}>
+                <div className="avatar"></div>
+                <div className="text_wrapper">
+                  <div className="text">
+                    {" "}
+                    {message.message}{" "}
+                  </div>
+                </div>
+              </li>
+            </div>
+          )
+          counter ? counter = 1 : counter = 0
+        })
+        return <div>{messages}</div>;
+    }
 
-      </div>);
-    });
-    return <div>
-      <ul className='messages'>
-        <li className="message left appeared">
-          {messages}
-        </li>
-      </ul>
-
-    </div>;
-  }
 }
 export default Messages;

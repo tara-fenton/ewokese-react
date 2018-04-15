@@ -1,10 +1,10 @@
 \c ewokese_app
-
+-- jordan-dog tara-cat m.e.-bird
 INSERT INTO users (user_name, hashed_password, nick_name)
 VALUES
-('jordan', 'dog', 'lickway'),
-('tara', 'cat', 'tarbear'),
-('m.e.', 'birds', 'me');
+('jordan', '$2a$10$FkYp6gAEjOlnjm2GCCnTM.5X8gR.hn3fuddjKjeWU6PcFVF5UC47.', 'lickway'),
+('tara', '$2a$10$Pket82OvHjsul1Ne0GoF3uUmMPMP8JZVH6VWnmV/ayps1T.JyYWrW', 'tarbear'),
+('m.e.', '$2a$10$y2Q.0r9OWz/xt4qxoOC9be24k6Omruz7lBIe1bNddGvMPZan5mFcO', 'me');
 
 INSERT INTO conversations (name)
 VALUES

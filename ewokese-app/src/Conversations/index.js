@@ -19,7 +19,6 @@ class Conversations extends Component {
   render() {
 
 
-
     return (
       <div>
       <div className="chat_window">
@@ -81,6 +80,7 @@ class Conversations extends Component {
       </div>
 </div>
 )
+
 
 
 
