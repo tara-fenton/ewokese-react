@@ -28,12 +28,11 @@ class Profile extends Component {
   }
 
   render() {
-    // Add your own authentication on the below line.
-    //const isLoggedIn = AuthService.isLoggedIn()
-    const isLoggedIn = false;
+    // Check if there is a token in local storage
+    const isLoggedIn = window.localStorage.authToken;
     //need to know if log in is true then display profile
     return isLoggedIn ? (
-      <div>
+       <div>
         <div className="chat_window">
           <div className="top_menu">
             <div className="buttons">
@@ -79,6 +78,7 @@ class Profile extends Component {
         </div>
       </div>
     ) : (
+      // redirect to login if no token exisits
       <Redirect to={"/login"} />
     );
   }
