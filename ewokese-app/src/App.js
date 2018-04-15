@@ -16,9 +16,10 @@ class App extends Component {
     super(props);
     this.state = {
       //winesBySlug: {}
+      loggedIn: false
     };
     // this.updateStateWithAllWines = this.updateStateWithAllWines.bind(this);
-    // this.logOut = this.logOut.bind(this);
+     this.logOut = this.logOut.bind(this);
   }
   logOut(evt) {
     evt.preventDefault();
@@ -29,6 +30,10 @@ class App extends Component {
     createUser(data)
       .then(response => {
         TokenService.save(response.token);
+        // set the state of logged in to true
+        this.setState({
+          loggedIn: true
+        })
       })
       .catch(err => console.log(`err: ${err}`));
   }
@@ -56,18 +61,12 @@ class App extends Component {
 
           <a href="#" onClick={this.logOut}>Log out</a>
 
-          <Route exact path="/profile" component={Profile} />
-          {/* <Route exact path="/register" component={Register} /> */}
-          {/* <Route exact path="/login" component={Login} /> */}
 
-          <Route exact path="/" component={CurrentConversation} />
+              <Route exact path="/profile" component={Profile} />
+              <Route exact path="/" component={CurrentConversation} />
 
-          {/* <div className="conversations-container">
-            <Conversations />
-          </div> */}
-          {/* <div className="messages-container">
-            <Messages />
-          </div> */}
+          
+
           <Route
             exact
             path="/register"
