@@ -28,6 +28,7 @@ app.get('/api/users', (request, response) => {
   });
 });
 
+
 app.get('/api/conversations', (request, response) => {
   Conversation.findAll().then((conversations) => {
     // render the list of users
@@ -53,6 +54,16 @@ app.get('/api/username/:name', (request, response) => {
     response.json(user);
   });
 });
+
+app.put('/api/user/:id', bodyParser, (request, response) => {
+  const userId = request.params.id;
+  const userUpdate = request.body;
+  console.log("server user out", userUpdate);
+  User.update(userUpdate, userId).then(user => {
+    response.json({ message: "updated" });
+  });
+});
+
 app.delete('/api/messages/:id', urlencodedParser, (request, response) => {
   const id = request.params.id;
   Message.delete(id)
