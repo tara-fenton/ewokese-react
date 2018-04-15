@@ -27,7 +27,7 @@ class App extends Component {
           <Route exact path="/profile/1/edit" component={EditNickName} />
           <Route exact path="/login" component={Login} />
 
-          <Route exact path="/" component={CurrentConversation} />
+          <Route exact path="/conversations" component={CurrentConversation} />
 
           {/* <div className="conversations-container">
             <Conversations />
