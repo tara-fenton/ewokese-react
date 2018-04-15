@@ -29,7 +29,7 @@ class Profile extends Component {
 
   render() {
     return (<div>
-      <div className="chat_window">
+      <div className='chat_window'>
         <div className="top_menu">
           <div className="buttons">
             <div className="button close"></div>
