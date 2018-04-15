@@ -29,6 +29,12 @@ module.exports = {
     return db.one('SELECT * FROM users WHERE user_name = $1;', [username]);
   },
 
+  update(nickname, id) {
+    // console.log("NM", nickname);
+    // console.log("ID", id);
+    return db.none('UPDATE users SET nick_name = $1 WHERE id = $2', [nickname.nickname, id]);
+  },
+
   login(user) {
     return this.findByUsername(user.username).then((userData) => {
       const isAuthed = bcrypt.compareSync(

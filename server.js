@@ -28,12 +28,6 @@ app.get('/api/users', (request, response) => {
   });
 });
 
-app.put('/api/user/:id', (request, response) => {
-  const userUpdate = request.body;
-  User.edit(userUpdate).then(user => {
-    response.json({ message: "updated" });
-  });
-});
 
 app.get('/api/conversations', (request, response) => {
   Conversation.findAll().then((conversations) => {
@@ -60,6 +54,16 @@ app.get('/api/username/:name', (request, response) => {
     response.json(user);
   });
 });
+
+app.put('/api/user/:id', bodyParser, (request, response) => {
+  const userId = request.params.id;
+  const userUpdate = request.body;
+  console.log("server user out", userUpdate);
+  User.update(userUpdate, userId).then(user => {
+    response.json({ message: "updated" });
+  });
+});
+
 app.delete('/api/messages/:id', urlencodedParser, (request, response) => {
   const id = request.params.id;
   Message.delete(id)
