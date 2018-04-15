@@ -30,13 +30,17 @@ class Conversations extends Component {
           id={conversation.id}
           onClick={() => this.sendConversationId(conversation.id)}
         >
-          {" "}
-          {conversation.name}{" "}
+          <div className='convoNames'>
+
+          {" "}{conversation.name}{" "}
         </div>
+
+
+      </div>
       );
     });
     return (
-      <div>       
+      <div>
         {conversations}
       </div>
     );
