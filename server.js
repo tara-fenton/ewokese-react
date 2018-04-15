@@ -55,7 +55,7 @@ app.get('/api/username/:name', (request, response) => {
   });
 });
 
-app.put('/api/user/:id', bodyParser, (request, response) => {
+app.put('/api/user/:id', jsonParser, (request, response) => {
   const userId = request.params.id;
   const userUpdate = request.body;
   console.log("server user out", userUpdate);
