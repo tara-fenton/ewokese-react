@@ -27,6 +27,13 @@ app.get('/api/users', (request, response) => {
   });
 });
 
+app.put('/api/user/:id', (request, response) => {
+  const userUpdate = request.body;
+  User.edit(userUpdate).then(user => {
+    response.json({ message: "updated" });
+  });
+});
+
 app.get('/api/conversations', (request, response) => {
   Conversation.findAll().then((conversations) => {
     // render the list of users

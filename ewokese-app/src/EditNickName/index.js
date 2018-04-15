@@ -21,7 +21,7 @@ class EditNickName extends Component {
   }
   //functions
   fetchUserById() {
-    fetch(`http://localhost:3000/api/users`)
+    fetch(`http://localhost:3000/api/user/1`)
     .then(response => response.json())
     .then(userData => {
       this.setState({
