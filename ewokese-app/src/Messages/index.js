@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 
 class Messages extends Component {
   constructor(props) {
@@ -10,6 +10,7 @@ class Messages extends Component {
     };
     // bind event handlers here
   }
+
 
 
   render() {
@@ -35,5 +36,6 @@ class Messages extends Component {
         })
         return <div>{messages}</div>;
     }
+
 }
 export default Messages;

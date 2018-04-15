@@ -17,12 +17,14 @@ class Profile extends Component {
   }
   // Fetch all messages from API endpoint and put them in state.
   fetchUser() {
+
     console.log(this.props.userId);
     fetch(`http://localhost:3000/api/user/${this.props.userId}`)
       // we need to put ${id} where 1 is so when user signs in it will take them to their user profile
       .then(response => response.json())
       .then(usersAPIResponse => {
         console.log(22, usersAPIResponse);
+
 
         this.setState({ userData: usersAPIResponse, userLoaded: true });
       });

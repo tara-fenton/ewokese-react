@@ -65,6 +65,7 @@ class App extends Component {
     return (
       <Router>
         <div className="container">
+
           <h1 className="page-title">Ewokese</h1>
             <div>
               <Link to="/register"><button>Register</button></Link>
@@ -85,6 +86,9 @@ class App extends Component {
               <Profile {...props} />
             )}
           />
+           <Route exact path="/profile/1/edit" component={EditNickName} />
+          <Route exact path="/profile/:id/edit" component={EditNickName} />
+
 
           <Route
             exact
