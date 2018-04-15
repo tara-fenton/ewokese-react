@@ -44,6 +44,15 @@ app.get('/api/user/:id', (request, response) => {
     response.json(user);
   });
 });
+// get user by id
+app.get('/api/username/:name', (request, response) => {
+  const userName = request.params.name;
+  // console.log(userId);
+  User.findByUsername(userName).then((user) => {
+    // render the user
+    response.json(user);
+  });
+});
 app.delete('/api/messages/:id', urlencodedParser, (request, response) => {
   const id = request.params.id;
   Message.delete(id)

@@ -15,11 +15,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //winesBySlug: {}
+      userId: null,
       loggedIn: false
     };
-    // this.updateStateWithAllWines = this.updateStateWithAllWines.bind(this);
      this.logOut = this.logOut.bind(this);
+     this.fetchUser = this.fetchUser.bind(this);
   }
   logOut(evt) {
     evt.preventDefault();
@@ -42,11 +42,24 @@ class App extends Component {
   // as above, we are saving the token locally using
   // the TokenService
   login(data) {
+    this.fetchUser(data.username)
+    console.log('data in login in app ',data)
     login(data)
       .then(response => {
         TokenService.save(response.token);
+        
       })
       .catch(err => console.log(`err: ${err}`));
+  }
+  fetchUser(name) {
+    fetch(`http://localhost:3000/api/username/${name}`)
+      .then(response => response.json())
+      .then(user => {
+        console.log('user in fetch user ',user);
+        this.setState({
+          userId: user.id
+        });
+      });
   }
   render() {
     return (
@@ -62,10 +75,16 @@ class App extends Component {
           <a href="#" onClick={this.logOut}>Log out</a>
 
 
-              <Route exact path="/profile" component={Profile} />
+              {/* <Route exact path="/profile" component={Profile} /> */}
               <Route exact path="/" component={CurrentConversation} />
 
-          
+          <Route
+            exact
+            path="/profile"
+            component={props => (
+              <Profile {...props} />
+            )}
+          />
 
           <Route
             exact
