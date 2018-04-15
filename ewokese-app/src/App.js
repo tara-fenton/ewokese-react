@@ -47,7 +47,6 @@ class App extends Component {
     login(data)
       .then(response => {
         TokenService.save(response.token);
-
       })
       .catch(err => console.log(`err: ${err}`));
   }
@@ -65,17 +64,17 @@ class App extends Component {
         <div className="container">
 
           <h1 className="page-title">Ewokese</h1>
-          <div>
-            <Link to="/register"><button>Register</button></Link>
-            <br />
-            <Link to="/login"><button>Login</button></Link>
-          </div>
+            <div>
+              <Link to="/register"><button>Register</button></Link>
+              <br />
+              <Link to="/login"><button>Login</button></Link>
+            </div>
 
           <a href="#" onClick={this.logOut}>Log out</a>
 
 
-          {/* <Route exact path="/profile" component={Profile} /> */}
-          <Route exact path="/" component={CurrentConversation} />
+              {/* <Route exact path="/profile" component={Profile} /> */}
+              <Route exact path="/" component={CurrentConversation} />
 
           <Route
             exact
@@ -84,8 +83,8 @@ class App extends Component {
               <Profile {...props} userId={this.state.userId} />
             )}
           />
-          <Route exact path="/profile/1/edit" component={EditNickName} />
-          {/* <Route exact path="/profile/:id/edit" component={EditNickName} /> */}
+
+          <Route exact path="/profile/:id/edit" component={EditNickName} />
 
 
           <Route
