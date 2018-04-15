@@ -54,17 +54,16 @@ app.get('/api/username/:name', (request, response) => {
     response.json(user);
   });
 });
-
+// edit nickname of user profile
 app.put('/api/user/:id', jsonParser, (request, response) => {
   const userId = request.params.id;
   const userUpdate = request.body;
-  console.log("server user out", userUpdate);
   User.update(userUpdate, userId).then(user => {
     response.json({ message: "updated" });
   });
 });
 
-app.delete('/api/messages/:id', urlencodedParser, (request, response) => {
+app.delete('/api/messages/:id', jsonParser, (request, response) => {
   const id = request.params.id;
   Message.delete(id)
     .then((id) => {
@@ -72,7 +71,7 @@ app.delete('/api/messages/:id', urlencodedParser, (request, response) => {
     });
 });
 
-app.delete('/api/messages/sender/:id', urlencodedParser, (request, response) => {
+app.delete('/api/messages/sender/:id', jsonParser, (request, response) => {
   const sender_id = request.params.id;
   Message.senderDelete(sender_id)
     .then((sender_id) => {
@@ -106,7 +105,7 @@ app.get('/api/messages/conversation/:id', (request, response) => {
 });
 
 
-app.post('/api/messages/new/message', urlencodedParser, (request, response) => {
+app.post('/api/messages/new/message', jsonParser, (request, response) => {
   const newMessage = request.body;
   const id = parseInt(request.params.id);
   console.log(newMessage);
@@ -115,6 +114,18 @@ app.post('/api/messages/new/message', urlencodedParser, (request, response) => {
       response.json(newMessage);
     });
 });
+
+// messages api/messages/${cachedUser}/${this.state.conversationSelected}
+app.post('/api/messages/:userId/:convoId', jsonParser, (request, response) => {
+  const userId = request.params.userId;
+  const convoId = request.params.convoId;
+  const newMessage = request.body.message;
+  console.log("called in server js ",userId, convoId, newMessage)
+  Message.create(userId, convoId, newMessage).then(user => {
+    response.json({ message: "updated" });
+  });
+});
+
 
 // ROUTES FOR USER AUTH
 
