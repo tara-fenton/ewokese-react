@@ -1,8 +1,5 @@
-
 import React, {Component} from "react";
 import {BroswerRouter as Router, Route, Link, Redirect} from "react-router-dom";
-
-
 class Conversations extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +8,6 @@ class Conversations extends Component {
     };
     // bind event handlers here
   }
-
   sendConversationId(id) {
     this.props.sendId(id)
     // this.setState({
@@ -20,8 +16,8 @@ class Conversations extends Component {
     // console.log(this.state.conversationSelected);
   }
   // Request conversations data if not already loaded
-
   render() {
+
 
 
     return (
@@ -87,6 +83,7 @@ class Conversations extends Component {
 )
 
 
+
     const conversations = this.props.conversations.map(conversation => {
       return (
         <div
@@ -102,12 +99,15 @@ class Conversations extends Component {
     });
     return (
       <div>
-        
         {conversations}
-
       </div>
     );
-
   }
 }
 export default Conversations;
+
+
+// Add CommentCollapse 
+// Message Input
+//
+// Message Tarafenton21, Jordan Liekweg

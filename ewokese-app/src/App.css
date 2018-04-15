@@ -9,6 +9,29 @@
   text-align: center;
 } */
 
+.current-conversations {
+  display: flex;
+  border: 3px solid black;
+  margin: 0 auto;
+  width: 800px;
+  height: 350px;
+  overflow: scroll;
+
+}
+.conversations-container {
+  border: 3px solid red;
+  display: flex;
+  width: 200px;
+  height: 600px;
+  overflow: scroll;
+}
+.messages-container{
+  border: 3px solid red;
+  width: 600px;
+  overflow: scroll;
+  height: 600px;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -205,12 +228,7 @@ body {
 .message_template {
   display: none;
 }
-.conversations-container{
-  border: 3px solid red;
-}
-.messages-container{
-  border: 3px solid red;
-}
+
 .noselect {
  -webkit-touch-callout: none;
  -webkit-user-select: none;
