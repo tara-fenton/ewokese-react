@@ -5,26 +5,13 @@ class Messages extends Component {
     super(props);
     this.state = {
       messages: [],
-      messagesLoaded: false
+      messagesLoaded: false,
+      userId: 1
     };
     // bind event handlers here
   }
-  // Request messages data if not already loaded
-  // componentDidMount() {
-  //   this.fetchMessages();
-  // }
-  //  Fetch all messages from API endpoint and put them in state.
-  // fetchMessages() {
-  //   fetch("http://localhost:3000/api/messages")
-  //     .then(response => response.json())
-  //     .then(messagesAPIResponse => {
-  //       this.setState({
-  //         messages: messagesAPIResponse,
-  //         messagesLoaded: true
-  //       })
-  //     })
-  //
-  //   }
+
+
 
   render() {
     let counter = 0;
@@ -49,5 +36,6 @@ class Messages extends Component {
         })
         return <div>{messages}</div>;
     }
+
 }
 export default Messages;
