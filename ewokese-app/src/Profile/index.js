@@ -19,6 +19,7 @@ class Profile extends Component {
 
   // Fetch all messages from API endpoint and put them in state.
   fetchUser() {
+
     // get the user id from local storage
     const cachedUser = localStorage.getItem('userId');
     fetch(`http://localhost:3000/api/user/${cachedUser}`)
