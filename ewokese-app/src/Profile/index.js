@@ -20,7 +20,7 @@ class Profile extends Component {
     fetch("http://localhost:3000/api/user/1")
     // we need to put ${id} where 1 is so when user signs in it will take them to their user profile
       .then(response => response.json()).then(usersAPIResponse => {
-      console.log(22, usersAPIResponse)
+      // console.log(22, usersAPIResponse)
 
       this.setState({userData: usersAPIResponse, userLoaded: true})
     })

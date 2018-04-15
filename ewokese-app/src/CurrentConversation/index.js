@@ -21,13 +21,14 @@ class CurrentConversation extends Component {
   //get id of conversation clicked to send to Messages
   sendId(id) {
     console.log("clicked in CC ", id);
+
     this.setState({conversationSelected: id})
+
   }
 
   //functions
   componentDidMount() {
     this.fetchConversations();
-
   }
   // Fetch all conversations from API endpoint and put them in state.
   fetchConversations() {
@@ -64,6 +65,7 @@ class CurrentConversation extends Component {
           </div>
           <div className="title">EwokeseApp</div>
         </div>
+
           <div className="current-conversations" onscroll="myFunction()">
             <div className="conversations-container" onscroll="myFunction()">
               {
@@ -86,6 +88,7 @@ class CurrentConversation extends Component {
         <div className="send_message">
           <div className="icon"></div>
           <div className="text">Send</div>
+
         </div>
       </div>
       </div>
