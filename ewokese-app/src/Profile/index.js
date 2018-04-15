@@ -9,30 +9,29 @@ class Profile extends Component {
     this.state = {
       userData: [],
       userLoaded: false
+      //cachedUser: null
     };
   }
   // Request messages data if not already loaded
   componentDidMount() {
     this.fetchUser();
   }
+
   // Fetch all messages from API endpoint and put them in state.
   fetchUser() {
-
-    console.log(this.props.userId);
-    fetch(`http://localhost:3000/api/user/${this.props.userId}`)
-      // we need to put ${id} where 1 is so when user signs in it will take them to their user profile
+    // get the user id from local storage
+    const cachedUser = localStorage.getItem('userId');
+    fetch(`http://localhost:3000/api/user/${cachedUser}`)
       .then(response => response.json())
       .then(usersAPIResponse => {
-        console.log(22, usersAPIResponse);
-
-
-        this.setState({ userData: usersAPIResponse, userLoaded: true });
+        this.setState({ userData: usersAPIResponse, userLoaded: true});
       });
   }
 
   render() {
     // Check if there is a token in local storage
     const isLoggedIn = window.localStorage.authToken;
+    const cachedUser = localStorage.getItem('userId');
     //need to know if log in is true then display profile
     return isLoggedIn ? (
        <div>
@@ -59,7 +58,7 @@ class Profile extends Component {
                         <div>Nickname: {this.state.userData.nick_name}</div>
                         {/* <Router>
                             <div> */}
-                        <Link to={`/profile/1/edit`}>Edit</Link>
+                        <Link to={`/profile/${cachedUser}/edit`}>Edit</Link>
                         {/* <Route
                                 exact
                                 path="/profile/1/edit"

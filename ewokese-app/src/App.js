@@ -47,7 +47,7 @@ class App extends Component {
     login(data)
       .then(response => {
         TokenService.save(response.token);
-        
+
       })
       .catch(err => console.log(`err: ${err}`));
   }
@@ -55,10 +55,8 @@ class App extends Component {
     fetch(`http://localhost:3000/api/username/${name}`)
       .then(response => response.json())
       .then(user => {
-        console.log('user in fetch user ',user);
-        this.setState({
-          userId: user.id
-        });
+        console.log('user in fetch user ',user.id);
+        localStorage.setItem('userId', user.id);
       });
   }
   render() {
@@ -83,7 +81,7 @@ class App extends Component {
             exact
             path="/profile"
             component={props => (
-              <Profile {...props} />
+              <Profile {...props} userId={this.state.userId} />
             )}
           />
            <Route exact path="/profile/1/edit" component={EditNickName} />
