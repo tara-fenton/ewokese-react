@@ -254,7 +254,21 @@ body {
   text-align: center;
   float: right;
 }
-
+.send_message {
+  width: 140px;
+  height: 50px;
+  display: inline-block;
+  border-radius: 50px;
+  background-color: #a3d063;
+  border: 2px solid #a3d063;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s linear;
+  text-align: center;
+  float: right;
+}
+/* to remove blue highlight */
+button:focus {outline:0;}
 .bottom_wrapper .send_message:hover {
   color: #a3d063;
   background-color: #fff;
