@@ -22,6 +22,7 @@ class App extends Component {
      this.fetchUser = this.fetchUser.bind(this);
   }
   logOut(evt) {
+    console.log('logout')
     evt.preventDefault();
     TokenService.destroy();
   }
@@ -47,7 +48,7 @@ class App extends Component {
     login(data)
       .then(response => {
         TokenService.save(response.token);
-
+        
       })
       .catch(err => console.log(`err: ${err}`));
   }
@@ -56,6 +57,8 @@ class App extends Component {
       .then(response => response.json())
       .then(user => {
         console.log('user in fetch user ',user);
+        // set the localStorage.setItem
+        localStorage.setItem('userId', user.id)
         this.setState({
           userId: user.id
         });
@@ -69,7 +72,9 @@ class App extends Component {
               {/* <Route exact path="/profile" component={Profile} /> */}
               <Route exact path="/conversations" component={CurrentConversation} />
 
-        
+
+          {/* <a href="#" onClick={this.logOut}>Log out</a> */}
+
 
 
           {/* <Route exact path="/profile" component={Profile} /> */}
@@ -80,7 +85,7 @@ class App extends Component {
             exact
             path="/profile"
             component={props => (
-              <Profile {...props} />
+              <Profile {...props} logout={this.logOut}/>
             )}
           />
           <Route exact path="/profile/1/edit" component={EditNickName} />

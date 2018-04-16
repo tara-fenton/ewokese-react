@@ -1,16 +1,15 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 
-
-
 class EditNickName extends Component {
   constructor(props) {
     super(props);
     this.state = {
       userId: null,
-      nickname: '',
+      nickname: "",
       edited: false,
-    }
+      nicknamePlaceholder: ""
+    };
     //bind events
     this.onNicknameChange = this.onNicknameChange.bind(this);
     this.onEditFormSubmit = this.onEditFormSubmit.bind(this);
@@ -19,16 +18,16 @@ class EditNickName extends Component {
   componentDidMount() {
     this.fetchUserById();
   }
-  //functions
   fetchUserById() {
-    fetch(`http://localhost:3000/api/user/1`)
-    .then(response => response.json())
-    .then(userData => {
-      this.setState({
-        userId: userData.id,
-        nickname: userData.nickname
+    const cachedUser = localStorage.getItem("userId");
+    fetch(`http://localhost:3000/api/user/${cachedUser}`)
+      .then(response => response.json())
+      .then(userData => {
+        this.setState({
+          userId: userData.id,
+          nicknamePlaceholder: userData.nick_name
+        });
       });
-    });
   }
 
   onNicknameChange(evt) {
@@ -43,7 +42,8 @@ class EditNickName extends Component {
       nickname: this.state.nickname
     };
     console.log("body in EditNickName ", body);
-    fetch(`http://localhost:3000/api/user/1`, {
+    const cachedUser = localStorage.getItem("userId");
+    fetch(`http://localhost:3000/api/user/${cachedUser}`, {
       method: "PUT",
       body: JSON.stringify(body),
       headers: {
@@ -56,49 +56,46 @@ class EditNickName extends Component {
     });
   }
 
-
   render() {
     const { nickname, edited } = this.state;
     if (edited) {
-      return <Redirect to="/profile" />
+      return <Redirect to="/profile" />;
     }
 
     return (
-
-        <div>
-         <div className="chat_window">
-           <div className="top_menu">
-             <div className="buttons">
-               <div className="button close" />
-               <div className="button minimize" />
-               <div className="button maximize" />
-             </div>
-             <div className="title">EwokeseApp</div>
-           </div>
-           <div className='content-two'>
-             <div className='ewok'></div>
-        <h1>Edit Nickname</h1>
-        <form onSubmit={this.onEditFormSubmit}>
-          <p>
-            Nickname:{" "}
-            <input
-              type="text"
-              // value={nickname}
-              onChange={this.onNicknameChange}
-            />
-          </p>
-          <p>
-            <button type="submit" className="send_message">
-              Save
-            </button>
-          </p>
-        </form>
+      <div>
+        <div className="chat_window">
+          <div className="top_menu">
+            <div className="buttons">
+              <div className="button close" />
+              <div className="button minimize" />
+              <div className="button maximize" />
+            </div>
+            <div className="title">EwokeseApp</div>
+          </div>
+          <div className="content-two">
+            <div className="ewok" />
+            <h1>Edit Nickname</h1>
+            <form onSubmit={this.onEditFormSubmit}>
+              <p>
+                Nickname:{" "}
+                <input
+                  type="text"
+                  placeholder={this.state.nicknamePlaceholder}
+                  onChange={this.onNicknameChange}
+                />
+              </p>
+              <p>
+                <button type="submit" className="send_message">
+                  Save
+                </button>
+              </p>
+            </form>
+          </div>
+          <div className="bottom_wrapper clearfix" />
+        </div>
       </div>
-        <div className="bottom_wrapper clearfix" />
-      </div>
-    </div>
-
-    )
+    );
   }
 }
 

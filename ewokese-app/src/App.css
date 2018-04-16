@@ -305,7 +305,6 @@ body {
   float: right;
 
 }
-
 .send_message{
   width: 140px;
   height: 50px;
@@ -317,12 +316,13 @@ body {
   cursor: pointer;
   transition: all 0.2s linear;
   text-align: center;
-  /* float: right; */
+  float: right;
   margin-right: 10px;
   font-size: 16px;
+  margin-top: 30px;
 }
-
-
+/* to remove blue highlight */
+button:focus {outline:0;}
 
 .bottom_wrapper .send_message:hover {
   color: #a3d063;

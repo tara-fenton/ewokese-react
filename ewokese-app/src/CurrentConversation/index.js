@@ -7,8 +7,9 @@ import {
 } from "react-router-dom";
 import Conversations from "../Conversations";
 import Messages from "../Messages";
-import openSocket from 'socket.io-client';
-const socket = openSocket('http://localhost:3000');
+// SOCKET TESTING
+// import openSocket from 'socket.io-client';
+// const socket = openSocket('http://localhost:3000');
 
 class CurrentConversation extends Component {
   constructor(props) {
