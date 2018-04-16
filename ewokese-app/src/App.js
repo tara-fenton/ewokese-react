@@ -48,7 +48,7 @@ class App extends Component {
     login(data)
       .then(response => {
         TokenService.save(response.token);
-
+        
       })
       .catch(err => console.log(`err: ${err}`));
   }

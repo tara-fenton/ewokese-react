@@ -85,6 +85,17 @@ app.put('/api/user/:id', jsonParser, (request, response) => {
     response.json({ message: "updated" });
   });
 });
+// delete user
+// profile/${cachedUser}/delete
+app.delete('/api/profile/:id/delete', jsonParser, (request, response) => {
+  const id = request.params.id;
+  Message.delete(id)
+    .then((id) => {
+      // TO DO redirect to /login
+      // response.json(id);
+      // redirect("/")
+    });
+});
 
 app.delete('/api/messages/:id', jsonParser, (request, response) => {
   const id = request.params.id;
