@@ -64,20 +64,17 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="container">
 
-          <h1 className="page-title">Ewokese</h1>
-          <div>
-            <Link to="/register"><button>Register</button></Link>
-            <br />
-            <Link to="/login"><button>Login</button></Link>
-          </div>
+        <div>
+              {/* <Route exact path="/profile" component={Profile} /> */}
+              <Route exact path="/conversations" component={CurrentConversation} />
 
-          <a href="#" onClick={this.logOut}>Log out</a>
+        
 
 
           {/* <Route exact path="/profile" component={Profile} /> */}
           <Route exact path="/" component={CurrentConversation} />
+
 
           <Route
             exact
