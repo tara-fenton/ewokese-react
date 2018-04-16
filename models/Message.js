@@ -10,11 +10,9 @@ Message.findBySenderId = (sender_id) => db.any('SELECT * FROM messages WHERE sen
 
 Message.findByConversationId = (conversation_id) => db.any('SELECT * FROM messages WHERE conversation_id = $1', [conversation_id]);
 
-Message.create = (newMessage) => {
-  return db.one('INSERT INTO messages(sender_id, conversation_id, message) VALUES($1, $2, $3) RETURNING id',[
-    newMessage.sender_id,
-    newMessage.conversation_id,
-    newMessage.message
+Message.create = (userId, convoId, newMessage) => {
+  return db.one('INSERT INTO messages(user_id, conversation_id, message) VALUES($1, $2, $3) RETURNING id',[
+    userId, convoId, newMessage
   ]);
 }
 

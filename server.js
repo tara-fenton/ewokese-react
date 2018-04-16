@@ -4,10 +4,13 @@ const jsonParser = bodyParser.json();
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 const cors = require('cors');
 const tokenService = require('./services/TokenService');
-
-
-
 const app = express();
+// SOCKET TESTING
+// const http = require('http').Server(app);
+// const io = require('socket.io')(http);
+
+
+
 app.use(cors());
 
 app.set('port', process.env.PORT || 3000);
@@ -20,6 +23,26 @@ const Conversation = require('./models/Conversation');
 const User = require('./models/User');
 const Message = require('./models/Message');
 
+// SOCKET TESTING
+// app.get('/', (req, res) => {
+//   // res.sendFile('http://localhost:3000/public/socket_index.html');
+//   res.sendFile(`${__dirname}/public/socket_index.html`);
+// });
+// app.get('/socket.io/socket.io.js', function(req, res){
+//   res.sendFile(__dirname + '/node_modules/socket.io-client/dist/socket.io.js');
+// });
+
+// io.on('connection', (client) => {
+//   client.on('subscribeToTimer', (interval) => {
+//     console.log('client is subscribing to timer with interval ', interval);
+//     setInterval(() => {
+//       client.emit('timer', new Date());
+//     }, interval);
+//   });
+// });
+// const port = 8000;
+// io.listen(port);
+// console.log('listening on port ', port);
 // get all users
 app.get('/api/users', (request, response) => {
   User.findAll().then((users) => {
@@ -54,17 +77,16 @@ app.get('/api/username/:name', (request, response) => {
     response.json(user);
   });
 });
-
+// edit nickname of user profile
 app.put('/api/user/:id', jsonParser, (request, response) => {
   const userId = request.params.id;
   const userUpdate = request.body;
-  console.log("server user out", userUpdate);
   User.update(userUpdate, userId).then(user => {
     response.json({ message: "updated" });
   });
 });
 
-app.delete('/api/messages/:id', urlencodedParser, (request, response) => {
+app.delete('/api/messages/:id', jsonParser, (request, response) => {
   const id = request.params.id;
   Message.delete(id)
     .then((id) => {
@@ -72,7 +94,7 @@ app.delete('/api/messages/:id', urlencodedParser, (request, response) => {
     });
 });
 
-app.delete('/api/messages/sender/:id', urlencodedParser, (request, response) => {
+app.delete('/api/messages/sender/:id', jsonParser, (request, response) => {
   const sender_id = request.params.id;
   Message.senderDelete(sender_id)
     .then((sender_id) => {
@@ -106,7 +128,7 @@ app.get('/api/messages/conversation/:id', (request, response) => {
 });
 
 
-app.post('/api/messages/new/message', urlencodedParser, (request, response) => {
+app.post('/api/messages/new/message', jsonParser, (request, response) => {
   const newMessage = request.body;
   const id = parseInt(request.params.id);
   console.log(newMessage);
@@ -115,6 +137,18 @@ app.post('/api/messages/new/message', urlencodedParser, (request, response) => {
       response.json(newMessage);
     });
 });
+
+// messages api/messages/${cachedUser}/${this.state.conversationSelected}
+app.post('/api/messages/:userId/:convoId', jsonParser, (request, response) => {
+  const userId = request.params.userId;
+  const convoId = request.params.convoId;
+  const newMessage = request.body.message;
+  console.log("called in server js ",userId, convoId, newMessage)
+  Message.create(userId, convoId, newMessage).then(user => {
+    response.json({ message: "updated" });
+  });
+});
+
 
 // ROUTES FOR USER AUTH
 
@@ -146,6 +180,10 @@ app.post('/login', jsonParser, (request, response) => {
     .catch(err => console.log(`throwing an error: ${err}`));
 });
 
+// SOCKET TESTING
+// http.listen(app.get('port'), () => {
+//   console.log('Node app is running on port', app.get('port'));
+// });
 
 app.listen(app.get('port'), () => {
   console.log('Node app is running on port', app.get('port'));
