@@ -67,7 +67,7 @@ class CurrentConversation extends Component {
           <div className="title">EwokeseApp</div>
         </div>
 
-          <div className="current-conversations" onscroll="myFunction()">
+          <div className="current-conversations" >
             <div className="conversations-container" onscroll="myFunction()">
               {
                 this.state.conversationsLoaded

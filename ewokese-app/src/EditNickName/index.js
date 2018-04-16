@@ -64,7 +64,19 @@ class EditNickName extends Component {
     }
 
     return (
-      <div>
+
+        <div>
+         <div className="chat_window">
+           <div className="top_menu">
+             <div className="buttons">
+               <div className="button close" />
+               <div className="button minimize" />
+               <div className="button maximize" />
+             </div>
+             <div className="title">EwokeseApp</div>
+           </div>
+           <div className='content-two'>
+             <div className='ewok'></div>
         <h1>Edit Nickname</h1>
         <form onSubmit={this.onEditFormSubmit}>
           <p>
@@ -76,12 +88,16 @@ class EditNickName extends Component {
             />
           </p>
           <p>
-            <button type="submit" className="saveButton">
+            <button type="submit" className="send_message">
               Save
             </button>
           </p>
         </form>
       </div>
+        <div className="bottom_wrapper clearfix" />
+      </div>
+    </div>
+
     )
   }
 }

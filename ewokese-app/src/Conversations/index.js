@@ -44,7 +44,6 @@ class Conversations extends Component {
         {conversations}
       </div>
     );
-
   }
 }
 export default Conversations;
