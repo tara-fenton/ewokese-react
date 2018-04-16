@@ -161,7 +161,7 @@ class CurrentConversation extends Component {
                   value={this.state.message}
                   onChange={this.onMessageChange}
                   name='message'
-                />;
+                />
               </div>
               <button className="send_message">
                 <div className="icon" />

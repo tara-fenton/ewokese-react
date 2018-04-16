@@ -1,4 +1,4 @@
-\c ewokese_app
+-- \c ewokese_app
 -- jordan-dog tara-cat m.e.-bird
 INSERT INTO users (user_name, hashed_password, nick_name)
 VALUES
