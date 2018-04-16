@@ -4,10 +4,13 @@ const jsonParser = bodyParser.json();
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 const cors = require('cors');
 const tokenService = require('./services/TokenService');
-
-
-
 const app = express();
+// SOCKET TESTING
+// const http = require('http').Server(app);
+// const io = require('socket.io')(http);
+
+
+
 app.use(cors());
 
 app.set('port', process.env.PORT || 3000);
@@ -20,6 +23,26 @@ const Conversation = require('./models/Conversation');
 const User = require('./models/User');
 const Message = require('./models/Message');
 
+// SOCKET TESTING
+// app.get('/', (req, res) => {
+//   // res.sendFile('http://localhost:3000/public/socket_index.html');
+//   res.sendFile(`${__dirname}/public/socket_index.html`);
+// });
+// app.get('/socket.io/socket.io.js', function(req, res){
+//   res.sendFile(__dirname + '/node_modules/socket.io-client/dist/socket.io.js');
+// });
+
+// io.on('connection', (client) => {
+//   client.on('subscribeToTimer', (interval) => {
+//     console.log('client is subscribing to timer with interval ', interval);
+//     setInterval(() => {
+//       client.emit('timer', new Date());
+//     }, interval);
+//   });
+// });
+// const port = 8000;
+// io.listen(port);
+// console.log('listening on port ', port);
 // get all users
 app.get('/api/users', (request, response) => {
   User.findAll().then((users) => {
@@ -157,6 +180,10 @@ app.post('/login', jsonParser, (request, response) => {
     .catch(err => console.log(`throwing an error: ${err}`));
 });
 
+// SOCKET TESTING
+// http.listen(app.get('port'), () => {
+//   console.log('Node app is running on port', app.get('port'));
+// });
 
 app.listen(app.get('port'), () => {
   console.log('Node app is running on port', app.get('port'));

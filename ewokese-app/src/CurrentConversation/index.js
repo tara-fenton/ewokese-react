@@ -7,6 +7,8 @@ import {
 } from "react-router-dom";
 import Conversations from "../Conversations";
 import Messages from "../Messages";
+import openSocket from 'socket.io-client';
+const socket = openSocket('http://localhost:3000');
 
 class CurrentConversation extends Component {
   constructor(props) {
@@ -38,13 +40,24 @@ class CurrentConversation extends Component {
   // add to the conversations
 
   onEditFormSubmit(evt) {
-    console.log('submit the form ');
     evt.preventDefault();
+    // SOCKET TESTING
+    //socket.emit('chat message', this.state.message);
+    //socket.on('chat message', msg => console.log('test'));
+    // SOCKET TESTING
+    // var socket = io();
+    // socket.emit('chat message', $('#m').val());
+    // $('#m').val('');
+    //
+    //socket.on('chat message', function(msg){
+    //  $('#messages').append($('<li>').text(msg));
+    //console.log(msg);
+    //});
+    // send the messages to the database
     const body = {
       message: this.state.message,
     };
     const cachedUser = localStorage.getItem('userId');
-console.log(`http://localhost:3000/api/messages/${cachedUser}/${this.state.conversationSelected}`)
     fetch(`http://localhost:3000/api/messages/${cachedUser}/${this.state.conversationSelected}`, {
       method: "POST",
       body: JSON.stringify(body),
@@ -72,7 +85,6 @@ console.log(`http://localhost:3000/api/messages/${cachedUser}/${this.state.conve
     fetch("http://localhost:3000/api/conversations")
       .then(response => response.json())
       .then(conversationsAPIResponse => {
-        console.log(conversationsAPIResponse);
         this.setState({
           conversations: conversationsAPIResponse,
           conversationsLoaded: true
@@ -85,6 +97,14 @@ console.log(`http://localhost:3000/api/messages/${cachedUser}/${this.state.conve
     const newConversationId = this.state.conversationSelected;
     if (prevConversationId !== newConversationId) {
       this.fetchMessages(this.state.conversationSelected);
+    }
+    // "real time" adding messages
+    if (this.state.sendMessage) {
+      this.fetchMessages(this.state.conversationSelected);
+      // need this or it constantly updates
+      this.setState({
+        sendMessage: false
+      });
     }
   }
   // get the messages from the selected conversation
@@ -131,9 +151,10 @@ console.log(`http://localhost:3000/api/messages/${cachedUser}/${this.state.conve
           </div>
           <div className="user-id-message-two" />
           <div className="bottom_wrapper clearfix">
-            <form onSubmit={this.onEditFormSubmit}>
+            <form onSubmit={this.onEditFormSubmit} id='messages'>
               <div className="message_input_wrapper">
                 <input
+                  id='m'
                   className="message_input"
                   placeholder="Type your message here..."
                   value={this.state.message}
