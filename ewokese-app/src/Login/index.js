@@ -14,14 +14,32 @@ class Login extends Component {
   render() {
     return (
       <div>
-        Login
+      <div className='chat_window'>
+
+          <div className="top_menu">
+            <div className="buttons">
+              <div className="button close" />
+              <div className="button minimize" />
+              <div className="button maximize" />
+            </div>
+            <div className="title">EwokeseApp</div>
+          </div>
+
+        <div className="content">
+        <div className='ewok'></div>
+        <div className='message'>Welcome Ewoks, it's time to <em>speak</em> our language. <br/>Please Login.</div>
         <UserForm submit={this.onSubmit} />
         <p>
-          <Link to="/">
-            <button>Back Home</button>
+          <Link to="/login">
+            {/* <button>Back Home</button> */}
           </Link>
         </p>
       </div>
+      <div className="bottom_wrapper clearfix" />
+      </div>
+
+    </div>
+
     );
   }
 }
