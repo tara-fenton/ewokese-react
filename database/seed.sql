@@ -14,13 +14,13 @@ VALUES
 
 INSERT INTO messages (user_id, conversation_id, message)
 VALUES
-(1, 1, 'jordan message in ewokese'),
-(2, 1, 'tara message in ewokese'),
-(3, 1, 'm.e. message in ewokese'),
-(1, 2, 'jordan message in coding'),
-(2, 2, 'tara message in coding'),
-(2, 3, 'tara message in homework'),
-(3, 3, 'm.e. message in homework');
+(1, 1, 'Woah! This is pretty sweet, right?'),
+(2, 1, 'I agree. Ryan totally has to give us an A'),
+(3, 1, 'I also think Google should hire us!'),
+(1, 2, 'Hey are we still on for the weekly crying session in the SRC?'),
+(2, 2, 'Of course! I would never miss it!'),
+(2, 3, 'Hey grandma! How are you liking your new iPhone?'),
+(3, 3, 'Massachusetts');
 
 INSERT INTO user_conversations (user_id, conversation_id)
 VALUES
