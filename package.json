@@ -34,5 +34,5 @@
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.11.0"
   },
-  "proxy": "http://localhost:4567"
+  "proxy": "http://localhost:3000"
 }
