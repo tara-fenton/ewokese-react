@@ -16,11 +16,11 @@ app.use(cors());
 
 // app.set('port', process.env.PORT || 3000);
 const PORT = process.env.PORT || 3000;
+const path = require('path');
 
 if (process.env.NODE_ENV == "production") {
   app.use(express.static(path.join(__dirname, "build")));
 }
-const path = require('path');
 
 // const bodyParser = require('body-parser');
 // const FileStore = require("session-file-store")(session);
