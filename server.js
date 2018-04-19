@@ -5,6 +5,7 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
 const cors = require('cors');
 const tokenService = require('./services/TokenService');
 const app = express();
+
 // SOCKET TESTING
 // const http = require('http').Server(app);
 // const io = require('socket.io')(http);
@@ -13,7 +14,13 @@ const app = express();
 
 app.use(cors());
 
-app.set('port', process.env.PORT || 3000);
+// app.set('port', process.env.PORT || 3000);
+const PORT = process.env.PORT || 3000;
+
+if (process.env.NODE_ENV == "production") {
+  app.use(express.static(path.join(__dirname, "build")));
+}
+const path = require('path');
 
 // const bodyParser = require('body-parser');
 // const FileStore = require("session-file-store")(session);
@@ -25,7 +32,7 @@ const Message = require('./models/Message');
 
 // SOCKET TESTING
 // app.get('/', (req, res) => {
-//   // res.sendFile('http://localhost:3000/public/socket_index.html');
+//   // res.sendFile('/public/socket_index.html');
 //   res.sendFile(`${__dirname}/public/socket_index.html`);
 // });
 // app.get('/socket.io/socket.io.js', function(req, res){
@@ -196,6 +203,17 @@ app.post('/login', jsonParser, (request, response) => {
 //   console.log('Node app is running on port', app.get('port'));
 // });
 
-app.listen(app.get('port'), () => {
-  console.log('Node app is running on port', app.get('port'));
+// app.listen(app.get('port'), () => {
+//   console.log('Node app is running on port', app.get('port'));
+// });
+// In production, any request that doesn't match a previous route
+// should send the front-end application, which will handle the route.
+if (process.env.NODE_ENV == "production") {
+  app.get("/*", function(request, response) {
+    response.sendFile(path.join(__dirname, "build", "index.html"));
+  });
+}
+
+app.listen(PORT, () => {
+  console.log(`listening on port ${PORT}`);
 });

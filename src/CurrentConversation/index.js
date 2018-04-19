@@ -59,7 +59,7 @@ class CurrentConversation extends Component {
       message: this.state.message,
     };
     const cachedUser = localStorage.getItem('userId');
-    fetch(`http://localhost:3000/api/messages/${cachedUser}/${this.state.conversationSelected}`, {
+    fetch(`/api/messages/${cachedUser}/${this.state.conversationSelected}`, {
       method: "POST",
       body: JSON.stringify(body),
       headers: {
@@ -83,7 +83,7 @@ class CurrentConversation extends Component {
   }
   // Fetch all conversations from API endpoint and put them in state.
   fetchConversations() {
-    fetch("http://localhost:3000/api/conversations")
+    fetch("/api/conversations")
       .then(response => response.json())
       .then(conversationsAPIResponse => {
         this.setState({
@@ -110,7 +110,7 @@ class CurrentConversation extends Component {
   }
   // get the messages from the selected conversation
   fetchMessages(selected) {
-    fetch(`http://localhost:3000/api/messages/conversation/${selected}`)
+    fetch(`/api/messages/conversation/${selected}`)
       .then(response => response.json())
       .then(messagesAPIResponse => {
         this.setState({ messages: messagesAPIResponse, messagesLoaded: true });

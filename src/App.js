@@ -53,7 +53,7 @@ class App extends Component {
       .catch(err => console.log(`err: ${err}`));
   }
   fetchUser(name) {
-    fetch(`http://localhost:3000/api/username/${name}`)
+    fetch(`/api/username/${name}`)
       .then(response => response.json())
       .then(user => {
         console.log('user in fetch user ',user);
