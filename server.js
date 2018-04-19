@@ -5,6 +5,7 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
 const cors = require('cors');
 const tokenService = require('./services/TokenService');
 const app = express();
+const path = require('path');
 
 // SOCKET TESTING
 // const http = require('http').Server(app);
@@ -13,14 +14,13 @@ const app = express();
 
 
 app.use(cors());
+// if (process.env.NODE_ENV == "production") {
+  app.use(express.static(path.join(__dirname, "build")));
+// }
 
 // app.set('port', process.env.PORT || 3000);
 const PORT = process.env.PORT || 3000;
-const path = require('path');
 
-if (process.env.NODE_ENV == "production") {
-  app.use(express.static(path.join(__dirname, "build")));
-}
 
 // const bodyParser = require('body-parser');
 // const FileStore = require("session-file-store")(session);
