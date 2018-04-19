@@ -19,7 +19,7 @@ class Profile extends Component {
   fetchUser() {
     const cachedUser = localStorage.getItem("userId");
     console.log("cachedUser ", cachedUser);
-    fetch(`http://localhost:3000/api/user/${cachedUser}`)
+    fetch(`/api/user/${cachedUser}`)
       // we need to put ${id} where 1 is so when user signs in it will take them to their user profile
       .then(response => response.json())
       .then(usersAPIResponse => {

@@ -1,5 +1,5 @@
 const createUser = data => {
-  return fetch(`http://localhost:3000/api/user/new`, {
+  return fetch(`/api/user/new`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -10,7 +10,7 @@ const createUser = data => {
 }
 
 const login = data => {
-  return fetch(`http://localhost:3000/login`, {
+  return fetch(`/login`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {

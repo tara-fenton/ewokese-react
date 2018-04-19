@@ -17,7 +17,7 @@ class Chat extends Component {
     this.setState({
       currentConversationName: conversationName
     })
-    fetch('http://localhost:3000/api/conversations')
+    fetch('/api/conversations')
     .then(response => response.json())
     .then(conversationInfoJson => {
       this.setState({
@@ -28,7 +28,7 @@ class Chat extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3000/api/conversations')
+    fetch('/api/conversations')
     .then()
   }
 }

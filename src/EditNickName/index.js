@@ -20,7 +20,7 @@ class EditNickName extends Component {
   }
   fetchUserById() {
     const cachedUser = localStorage.getItem("userId");
-    fetch(`http://localhost:3000/api/user/${cachedUser}`)
+    fetch(`/api/user/${cachedUser}`)
       .then(response => response.json())
       .then(userData => {
         this.setState({
@@ -43,7 +43,7 @@ class EditNickName extends Component {
     };
     console.log("body in EditNickName ", body);
     const cachedUser = localStorage.getItem("userId");
-    fetch(`http://localhost:3000/api/user/${cachedUser}`, {
+    fetch(`/api/user/${cachedUser}`, {
       method: "PUT",
       body: JSON.stringify(body),
       headers: {

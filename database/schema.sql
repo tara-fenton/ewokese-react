@@ -1,11 +1,11 @@
-CREATE DATABASE ewokese_app;
-
-\c ewokese_app;
-
-DROP TABLE users CASCADE;
-DROP TABLE conversations CASCADE;
-DROP TABLE messages CASCADE;
-DROP TABLE user_conversations CASCADE;
+-- CREATE DATABASE ewokese_app;
+--
+-- \c ewokese_app;
+--
+-- DROP TABLE users CASCADE;
+-- DROP TABLE conversations CASCADE;
+-- DROP TABLE messages CASCADE;
+-- DROP TABLE user_conversations CASCADE;
 
 CREATE TABLE users (
   id BIGSERIAL PRIMARY KEY,
