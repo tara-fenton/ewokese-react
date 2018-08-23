@@ -1,7 +1,7 @@
 # dependencies
 /node_modules
 .DS_Store
-yarn.lock
+# yarn.lock
 
 # testing
 /coverage
